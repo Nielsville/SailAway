@@ -15,25 +15,25 @@ public class Grid : MonoBehaviour
     // Use this for initialization
     void Makegrid()
     {
-        MakeBorders(new Vector2(3.5f, -4.5f), new Vector2(-3.5f, -4.5f));
+        MakeBorders(new Vector2(4.5f, -4.5f), new Vector2(-4.4275f, -4.5f));
         for (int i = 0; i < yRow; i++)
         {
             for (int j = 0; j < xRow; j++)
             {
-                Vector2 place = new Vector2(i - 2.5f, j - 3.5f);
+                Vector2 place = new Vector2((i*1.275f )- 3.15f, (j * 1.275f) - 3.2f);
                 GameObject newboat = Instantiate(Boat, place, Boat.transform.rotation);
                 newboat.transform.SetParent(Boat.transform.parent);
                 newboat.transform.localScale = new Vector2(1, 1);
                 Coördinates.Add(place);
             }
         }
-        MakeBorders(new Vector2(3.5f, 2.5f), new Vector2(3.5f, -4.5f));
+        MakeBorders(new Vector2(4.5f, 4.4275f), new Vector2(4.5f, -4.5f));
     }
     void MakeBorders(Vector2 x, Vector2 y)
     {
         for (int i = 0; i < xRow + 2; i++)
         {
-            Vector2 place = y + new Vector2(0, i);
+            Vector2 place = y + new Vector2(0, (i * 1.275f));
             GameObject newcrate = Instantiate(Crate, place, Boat.transform.rotation);
             newcrate.transform.SetParent(Boat.transform.parent);
             newcrate.transform.localScale = new Vector2(1, 1);
@@ -49,7 +49,7 @@ public class Grid : MonoBehaviour
         }
         for (int i = 0; i < yRow + 2; i++)
         {
-            Vector2 place = x - new Vector2(i, 0);
+            Vector2 place = x - new Vector2((i * 1.275f), 0);
             GameObject newcrate = Instantiate(Crate, place, Boat.transform.rotation);
             newcrate.transform.SetParent(Boat.transform.parent);
             newcrate.transform.localScale = new Vector2(1, 1);

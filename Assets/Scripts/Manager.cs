@@ -49,16 +49,10 @@ public class Manager : MonoBehaviour
             AllLevels.GetComponent<Menu>().levelName = AllLevels.GetComponent<Menu>().level + _Difficulty;//+1;
             int LevelAmount = AllLevels.GetComponent<Menu>().levelName = AllLevels.GetComponent<Menu>().level + _Difficulty;
             AllLevels.GetComponentInChildren<Text>().text = "Level " + LevelAmount;
-            //AllLevels.GetComponent<Image>().sprite = unUsingSprite;
-            //if (AllLevels.GetComponent<Menu>()._Difficulty == Controller.LevelName)
-            //{
-            //    AllLevels.GetComponent<Image>().sprite = AllLevels.GetComponent<Menu>().UsingSprite;
-            //}
             StartCoroutine(AllLevels.GetComponent<Menu>().Working());
         }
         foreach (GameObject AllLevels in GameObject.FindGameObjectsWithTag("niveau"))
         {
-            //AllLevels.GetComponent<Image>().sprite = unUsingSprite;
             StartCoroutine(AllLevels.GetComponent<Menu>().Working());
         }
         foreach (GameObject AllGrids in GameObject.FindGameObjectsWithTag("point"))
@@ -105,12 +99,9 @@ public class Manager : MonoBehaviour
                     Difficulty = "Expert";
                     break;
             }
-            Debug.Log(_lev);
             _lev = _lev+8;
             LevelNameText.text = Difficulty + ":" + _lev;
             minimaleZetten = Levels[LevelName].minimaleZetten;
-
-
         }
     }
 
@@ -127,30 +118,30 @@ public class Manager : MonoBehaviour
             Spawn(Level.Boat[i].Pos, Quaternion.Euler(Level.Boat[i].Rotation), Level.Boat[i].Horizontal, Level.Boat[i].longBoat, Level.Boat[i].MainBoat);
         }
     }
-    public void Spawn(Vector2 place, Quaternion rotatio, bool Horizontal, bool LongBoat, bool MainBoat)
+    public void Spawn(Vector2 place, Quaternion rotation, bool Horizontal, bool LongBoat, bool MainBoat)
     {
         if (Horizontal == true)
         {
-            place = new Vector2(place.x - 2, place.y - 3.5f);
+            place = new Vector2((place.x * 1.275f) - 2.5f, (place.y * 1.275f) - 3.225f);
         }
         else
         {
-            place = new Vector2(place.x - 2.5f, place.y - 3);
+            place = new Vector2((place.x * 1.275f) - 3.15f, (place.y * 1.275f) - 2.5f);
         }
-        GameObject newboat = Instantiate(Boat, place, rotatio);
+        GameObject newboat = Instantiate(Boat, place, rotation);
         newboat.transform.SetParent(Boat.transform.parent);
         newboat.transform.tag = "boat";
-        newboat.transform.localScale = new Vector2(1, 1);
+        newboat.transform.localScale = new Vector2(1f, 1f);
         if (LongBoat == true)
         {
             GameObject BoatImg = newboat.transform.GetChild(0).gameObject;
             BoatImg.GetComponent<Image>().sprite = LongSprite;
             newboat.GetComponent<Image>().sprite = LongSpriteGlow;
-            newboat.GetComponent<BoxCollider2D>().size = new Vector2(119, 359);
-            newboat.GetComponent<RectTransform>().sizeDelta = new Vector2(170, 370);
-            newboat.transform.GetChild(1).GetComponent<RectTransform>().localPosition = new Vector2(0,180.1f);
-            newboat.transform.GetChild(2).GetComponent<RectTransform>().localPosition = new Vector2(0, -180.1f);
-            BoatImg.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 320);
+            newboat.GetComponent<BoxCollider2D>().size = new Vector2((119 * 1.275f), (359 * 1.275f));
+            newboat.GetComponent<RectTransform>().sizeDelta = new Vector2((170*1.275f), (370 * 1.275f));
+            newboat.transform.GetChild(1).GetComponent<RectTransform>().localPosition = new Vector2(0, 229.6f);
+            newboat.transform.GetChild(2).GetComponent<RectTransform>().localPosition = new Vector2(0, -229.6f);
+            BoatImg.GetComponent<RectTransform>().sizeDelta = new Vector2(127.5f, (320 * 1.275f));
             newboat.GetComponent<BoatBehavoir>().TotalDistance = 1;
         }
         if (MainBoat == true)
