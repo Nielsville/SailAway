@@ -9,7 +9,7 @@ public class BoatBehavoir : MonoBehaviour, I_SmartwallInteractable
     int stop = 0;
     public bool Clicked = false;
     bool SetRight = false;
-    public float TotalDistance = 0.5f;
+    public float TotalDistance = 0.775f;
     [SerializeField] GameObject pointOrginFront;
     [SerializeField] GameObject pointOrginBack;
     public bool CanUse;

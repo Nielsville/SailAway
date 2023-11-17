@@ -142,7 +142,7 @@ public class Manager : MonoBehaviour
             newboat.transform.GetChild(1).GetComponent<RectTransform>().localPosition = new Vector2(0, 229.6f);
             newboat.transform.GetChild(2).GetComponent<RectTransform>().localPosition = new Vector2(0, -229.6f);
             BoatImg.GetComponent<RectTransform>().sizeDelta = new Vector2(127.5f, (320 * 1.275f));
-            newboat.GetComponent<BoatBehavoir>().TotalDistance = 1;
+            newboat.GetComponent<BoatBehavoir>().TotalDistance = 1.275f;
         }
         if (MainBoat == true)
         {
